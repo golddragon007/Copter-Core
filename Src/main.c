@@ -46,13 +46,14 @@
   ******************************************************************************
   */
 /* Includes ------------------------------------------------------------------*/
-
 #include "main.h"
 #include "stm32f4xx_hal.h"
 #include "cmsis_os.h"
 
 /* USER CODE BEGIN Includes */
-#include <barometer.h>
+#include "barometer.h"
+#include "orientation.h"
+
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -169,9 +170,9 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
-    //xTaskCreate(Task_Orientation, "MAIN_ORIENTATION", DEFAULT_STACK_SIZE, NULL, TASK_MAIN_PRIO, NULL);
-    xTaskCreate(Task_Barometer, "MAIN_BAROMETER", DEFAULT_STACK_SIZE, NULL, TASK_MAIN_PRIO, NULL);
-    //xTaskCreate(Task_USB, "MAIN_USB", DEFAULT_STACK_SIZE, NULL, TASK_MAIN_PRIO, NULL);
+  xTaskCreate(Task_Orientation, "MAIN_ORIENTATION", DEFAULT_STACK_SIZE, NULL, TASK_MAIN_PRIO, NULL);
+  xTaskCreate(Task_Barometer, "MAIN_BAROMETER", DEFAULT_STACK_SIZE, NULL, TASK_MAIN_PRIO, NULL);
+  //xTaskCreate(Task_USB, "MAIN_USB", DEFAULT_STACK_SIZE, NULL, TASK_MAIN_PRIO, NULL);
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_QUEUES */
